@@ -1,0 +1,249 @@
+package Fly;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
+import javax.swing.*;
+public class book extends JFrame implements ActionListener{
+	JMenuBar mb;
+	JMenu m,m1;
+	JMenuItem i1,i2;
+	JLabel l,l1,l2,l3,l4,l5;
+	JTextField t1,t2,t3,t4;
+	JComboBox c1,c2;
+	JButton b1,b2,b3,b4;
+	JTable t,tb;
+	book()
+	{
+		Container c=getContentPane();
+		c.setLayout(null);
+		JFrame f=new JFrame();
+		setTitle(" Welcome AirIndia");
+		setVisible(true);
+		c.setBackground(Color.darkGray);
+		setLocation(100,60);
+		setSize(630,500);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		mb=new JMenuBar();
+		m=new JMenu("File");
+		m1=new JMenu("Book");
+		i1=new JMenuItem("Open");
+		i2=new JMenuItem("Close");
+		m.add(i1);
+		m.add(i2);	
+		mb.add(m);
+		mb.add(m1);
+		mb.setBounds(00,00,1400,50);
+		m.setForeground(Color.cyan);
+		m1.setForeground(Color.cyan);
+		mb.setBackground(Color.darkGray);
+		c.add(mb);
+		l5=new JLabel("AirLine Manage Flights");
+		l5.setBounds(50,50,400,50);
+		l5.setFont(new Font("BOLD",Font.PLAIN,30));
+		l5.setForeground(Color.blue);
+		c.add(l5);
+		l=new JLabel("Fligth Code :");
+		l.setBounds(30,150,150,30);
+		l.setForeground(Color.blue);
+		c.add(l);
+		t1=new JTextField();
+		t1.setBackground(Color.white);
+		t1.setForeground(Color.black);
+		t1.setBounds(130,150,120,30);
+        c.add(t1);
+        
+        l1=new JLabel("Source :");
+		l1.setBounds(30,200,150,30);
+		l1.setForeground(Color.blue);
+		c.add(l1);
+		String s[]= {"Pune"};
+	    c1=new JComboBox(s);
+		c1.setBackground(Color.white);
+		c1.setForeground(Color.black);
+		c1.setBounds(130,200,120,30);
+        c.add(c1);
+        
+        l2=new JLabel("Destination :");
+		l2.setBounds(30,250,150,30);
+		l2.setForeground(Color.blue);
+		c.add(l2);
+		String p[]= {"Bangalore","Delhy","Mumbai","Channai","Maisoor","Goa","TamilNadu"};
+	    c2=new JComboBox(p);
+		c2.setBackground(Color.white);
+		c2.setForeground(Color.black);
+		c2.setBounds(130,250,120,30);
+        c.add(c2);
+        
+        l3=new JLabel("Date :");
+		l3.setBounds(380,150,150,30);
+		l3.setForeground(Color.blue);
+		c.add(l3);
+		t2=new JTextField();
+		t2.setBackground(Color.white);
+		t2.setForeground(Color.black);
+		t2.setBounds(450,150,120,30);
+        c.add(t2);
+        
+        l4=new JLabel("Seat :");
+		l4.setBounds(380,200,150,30);
+		l4.setForeground(Color.blue);
+		c.add(l4);
+		t3=new JTextField();
+		t3.setBackground(Color.white);
+		t3.setForeground(Color.black);
+		t3.setBounds(450,200,120,30);
+        c.add(t3);
+        
+        Object row[][]= {{"1","PM2543","Pune To Mubmai","2AM"},
+        		{"2","PG7858","Pune To Goa","6AM"},
+        		{"3","PB8796","Pune To Bangalore","8AM"},
+        		{"4","PM2543","Pune To Mumbai","11AM"},
+        		{"5","PC7657","Pune To Channai","2PM"},
+        		{"6","PM7865","Pune To Maisoor","4PM"},
+        		{"7","PT6545","Pune To TamilNadu","7PM"},
+        		{"8","PD6578","Pune To Delhy","9PM"}};
+        Object header[]= {"Srno","Code","Flights","Time"};
+     
+        t=new JTable(row,header);
+        c.add(t);
+        t.setBackground(Color.black);
+        t.setForeground(Color.white);
+        JScrollPane b=new JScrollPane(t);
+        b.setBounds(50,300,500,80);
+        b.setBackground(Color.blue);
+       
+        c.add(b,BorderLayout.CENTER);
+        
+        
+		b1=new JButton("Save");
+		b1.setBounds(180,400,130,50);
+		b1.setForeground(Color.white);
+		b1.setBackground(Color.DARK_GRAY);
+		b1.addActionListener(this);
+		c.add(b1);
+		
+		b2=new JButton("Back");
+		b2.setBounds(330,400,130,50);
+		b2.setForeground(Color.white);
+		b2.setBackground(Color.DARK_GRAY);
+		b2.addActionListener(this);
+		c.add(b2);
+		
+		b3=new JButton("Print");
+		b3.setBounds(480,00,130,50);
+		b3.setForeground(Color.white);
+		b3.setBackground(Color.BLUE);
+		b3.addActionListener(this);
+		c.add(b3);
+		
+		
+	
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==b1)
+		{
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				System.out.println("Driver loaded");
+				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/AirLine","root","");
+				System.out.println("Connection Successfully");
+				String code=t1.getText();	
+				String Date=t2.getText();
+				String Seat=t3.getText();
+				
+			String q="insert into air(Code,Source,Destination,Date,Seat)values('"+code+"','"+c1.getSelectedItem()+"','"+c2.getSelectedItem()+"','"+Date+"','"+Seat+"')";
+			PreparedStatement st=con.prepareStatement(q);
+			st.executeUpdate(q);
+			if(code.isEmpty()&&code.equals(""))
+			{
+				JOptionPane.showMessageDialog(this, "Please, Fill Flight Code");
+			}
+			else if(Date.isEmpty()&&Date.equals(""))
+			{
+				JOptionPane.showMessageDialog(this, "Please, Fill Today Date");
+			}
+			else if(Seat.isEmpty()&&Seat.equals(""))
+			{
+				JOptionPane.showMessageDialog(this, "Please, Fill Number Of Seat");
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "Your Record is Correct, Click Ok Button To Submit Successfully");
+			}
+			
+			con.close();
+		 
+			
+			}
+			catch(Exception e1)
+			{
+				System.out.println(e1);
+			}
+		}
+		if(e.getSource()==b2)
+		{
+		    dispose();
+			Air a=new Air();
+		}
+		if(e.getSource()==b3)
+		{
+			dispose();
+			
+			JFrame f=new JFrame();
+			f.setLayout(new FlowLayout());
+			f.setTitle("Welcome AirIndia");
+			f.setVisible(true);
+			f.setBackground(Color.darkGray);
+			f.setLocation(100,60);
+			f.setSize(630,500);
+			String id=t1.getText();
+			String date=t2.getText();
+			String seat=t3.getText();
+			f.setDefaultCloseOperation(EXIT_ON_CLOSE);
+			
+			 Object row[][]= {{id,c1.getSelectedItem(),c2.getSelectedItem(),date,seat}};
+			 Object header[]= {"Id","Sorce","Destination","Date","Seat"};
+		     
+			    tb=new JTable(row,header);
+			    
+			    
+		        f.add(tb);
+		        tb.setBackground(Color.gray);
+		        tb.setForeground(Color.RED);
+		        JScrollPane b=new JScrollPane(tb);
+		        b.setBounds(50,300,500,80);
+		        b.setBackground(Color.blue);
+		       
+		        f.add(b,BorderLayout.CENTER);
+		        b4=new JButton("Back");
+		        b4.setBounds(100,300,100,50);
+		        b4.addActionListener(this);
+		        f.add(b4);
+		        try {
+		        tb.print();
+		        }
+		        catch(Exception e2)
+		        {
+		        	System.out.println(e2);
+		        }
+		       
+			}
+		     if(e.getSource()==b4)
+	        {
+	        	 dispose();
+	 			Air a=new Air();
+	        }
+		}
+		
+
+	public static void main(String[] args) {
+		new book();
+
+	}
+
+}

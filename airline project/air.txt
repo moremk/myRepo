@@ -1,0 +1,110 @@
+package Fly;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+public class Air extends JFrame implements ActionListener {
+	JMenuBar mb;
+	JMenu m,m1;
+	JMenuItem i1,i2;
+	JLabel l,l1;
+	JButton b,b1,b2,b3;
+	Air()
+	{
+		Container c=getContentPane();
+		c.setLayout(null);
+		setTitle("AirIndia");
+		setVisible(true);
+		setLocation(100,60);
+		setSize(630,500);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		mb=new JMenuBar();
+		m=new JMenu("File");
+		m1=new JMenu("Book");
+        m1.addActionListener(this);
+		i1=new JMenuItem("Open");
+		i2=new JMenuItem("Close");
+		m.add(i1);
+		m.add(i2);	
+		mb.add(m);
+		mb.add(m1);
+		mb.setBounds(00,00,1500,50);
+		m.setForeground(Color.cyan);
+		m1.setForeground(Color.cyan);
+		mb.setBackground(Color.darkGray);
+		c.add(mb);
+		l1=new JLabel(new ImageIcon("C:\\Users\\SME\\Pictures\\air.jpg"));	
+		l1.setBounds(-40,00,700,280);
+		c.add(l1);
+		l=new JLabel("Welcome Air India");
+		l.setBounds(90,300,700,100);
+		l.setFont(new Font("BOLD",Font.PLAIN,50));
+		l.setForeground(Color.magenta);
+		c.add(l);
+	    b=new JButton("Flights");
+		b.setBounds(50,400,100,50);
+		b.setForeground(Color.white);
+		b.setBackground(Color.DARK_GRAY);
+		b.addActionListener(this);
+		c.add(b);
+		b1=new JButton("Passengers");
+		b1.setBounds(160,400,130,50);
+		b1.setForeground(Color.white);
+		b1.setBackground(Color.DARK_GRAY);
+		b1.addActionListener(this);
+		c.add(b1);
+		b2=new JButton("Tickets");
+		b2.setBounds(300,400,100,50);
+		b2.setForeground(Color.white);
+		b2.setBackground(Color.DARK_GRAY);
+		b2.addActionListener(this);
+		c.add(b2);
+		b3=new JButton("Cancellation");
+		b3.setBounds(410,400,150,50);
+		b3.setForeground(Color.white);
+		b3.setBackground(Color.DARK_GRAY);
+		b3.addActionListener(this);
+		c.add(b3);
+		
+	
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==b)
+		{
+			JOptionPane.showMessageDialog(null, "Open Flights Manage");
+			dispose();
+			book b=new book();
+			b.setVisible(true);
+		}
+		
+		if(e.getSource()==b2)
+		{
+			dispose();
+			Ticket t=new Ticket();
+			t.setVisible(true);
+		}
+		if(e.getSource()==b1)
+		{
+			dispose();
+			Passen p=new Passen();
+			p.setVisible(true);
+		}
+		if(e.getSource()==b3)
+		{
+			
+			dispose();
+			Cancel c=new Cancel();
+			c.setVisible(true);
+		}
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+ new Air();
+	}
+	
+
+}

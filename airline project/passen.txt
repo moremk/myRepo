@@ -1,0 +1,181 @@
+package Fly;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
+import javax.swing.*;
+public class Passen extends JFrame implements ActionListener {
+	JMenuBar mb;
+	JMenu m,m1;
+	JMenuItem i1,i2;
+	JLabel l,l1,l2,l3,l4,l5;
+	JTextField t1,t2,t3,t4;
+	JComboBox c1,c2;
+	JButton b1,b2;
+	Passen()
+	{
+	Container c=getContentPane();
+	c.setLayout(null);
+	c.setBackground(Color.lightGray);
+	setTitle("AirIndia");
+	setVisible(true);
+	setLocation(100,60);
+	setSize(630,500);
+	setDefaultCloseOperation(EXIT_ON_CLOSE);
+	mb=new JMenuBar();
+	m=new JMenu("File");
+	m1=new JMenu("Book");
+    
+	i1=new JMenuItem("Open");
+	i2=new JMenuItem("Close");
+	m.add(i1);
+	m.add(i2);	
+	mb.add(m);
+	mb.add(m1);
+	mb.setBounds(00,00,1500,50);
+	m.setForeground(Color.cyan);
+	m1.setForeground(Color.cyan);
+	mb.setBackground(Color.darkGray);
+	c.add(mb);
+	l5=new JLabel("AirLine Manage Passengar");
+	l5.setBounds(50,50,400,50);
+	l5.setFont(new Font("BOLD",Font.PLAIN,30));
+	l5.setForeground(Color.blue);
+	c.add(l5);
+	l=new JLabel("Passenger Name :");
+	l.setBounds(20,150,150,30);
+	l.setForeground(Color.blue);
+	c.add(l);
+	t1=new JTextField();
+	t1.setBackground(Color.white);
+	t1.setForeground(Color.black);
+	t1.setBounds(130,150,120,30);
+    c.add(t1);
+    
+    l1=new JLabel("Nationality :");
+	l1.setBounds(30,200,150,30);
+	l1.setForeground(Color.blue);
+	c.add(l1);
+	String s[]= {"India","USA","England","France","Congo","Spain","Mexico"};
+    c1=new JComboBox(s);
+	c1.setBackground(Color.white);
+	c1.setForeground(Color.black);
+	c1.setBounds(130,200,120,30);
+    c.add(c1);
+    
+    l2=new JLabel("Gender :");
+	l2.setBounds(30,250,150,30);
+	l2.setForeground(Color.blue);
+	c.add(l2);
+	String p[]= {"Male","Female","Other"};
+    c2=new JComboBox(p);
+	c2.setBackground(Color.white);
+	c2.setForeground(Color.black);
+	c2.setBounds(130,250,120,30);
+    c.add(c2);
+    
+    l3=new JLabel("Passport Number :");
+	l3.setBounds(340,150,150,30);
+	l3.setForeground(Color.blue);
+	c.add(l3);
+	t2=new JTextField();
+	t2.setBackground(Color.white);
+	t2.setForeground(Color.black);
+	t2.setBounds(450,150,120,30);
+    c.add(t2);
+    
+    l4=new JLabel("Adress :");
+	l4.setBounds(380,200,150,30);
+	l4.setForeground(Color.blue);
+	c.add(l4);
+	t3=new JTextField();
+	t3.setBackground(Color.white);
+	t3.setForeground(Color.black);
+	t3.setBounds(450,200,120,30);
+    c.add(t3);
+    
+    l5=new JLabel("Phone :");
+	l5.setBounds(380,250,150,30);
+	l5.setForeground(Color.blue);
+	c.add(l5);
+	t4=new JTextField();
+	t4.setBackground(Color.white);
+	t4.setForeground(Color.black);
+	t4.setBounds(450,250,120,30);
+    c.add(t4);
+    
+    b1=new JButton("Save");
+	b1.setBounds(180,400,130,50);
+	b1.setForeground(Color.white);
+	b1.setBackground(Color.DARK_GRAY);
+	b1.addActionListener(this);
+	c.add(b1);
+	
+	b2=new JButton("Back");
+	b2.setBounds(330,400,130,50);
+	b2.setForeground(Color.white);
+	b2.setBackground(Color.DARK_GRAY);
+	b2.addActionListener(this);
+	c.add(b2);
+    
+    
+}
+
+public void actionPerformed(ActionEvent e)
+{
+	if(e.getSource()==b1)
+	{
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("Driver loaded");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/update","root","");
+			System.out.println("Connection Successfully");
+			
+			String Name=t1.getText();
+			String Pnum=t2.getText();
+			String Adress=t3.getText();
+			String Phone=t4.getText();
+			String q="insert into Passen(Name,Nationality,Gender,Passnumber,Adress,Phone)values('"+Name+"','"+c1.getSelectedItem()+"','"+c2.getSelectedItem()+"','"+Pnum+"','"+Adress+"','"+Phone+"')";
+			PreparedStatement st=con.prepareStatement(q);
+			st.executeUpdate(q);
+			if(Name.isEmpty()&&Name.equals(""))
+			{
+				JOptionPane.showMessageDialog(this, "Please, Enter a Passenger Name");
+			}
+			else if(Pnum.isEmpty()&&Pnum.equals(""))
+			{
+				JOptionPane.showMessageDialog(this, "Please, Enter a Passport Number");
+			}
+			
+			else if(Adress.isEmpty()&&Adress.equals(""))
+			{
+				JOptionPane.showMessageDialog(this, "Please, Enter a Adress");
+			}
+			else if(Phone.isEmpty()&&Phone.equals(""))
+			{
+				JOptionPane.showMessageDialog(this, "Please, Enter a Phone Number");
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "Your Record is Correct, Click Ok Button To Submit Successfully");
+			}
+	}
+		catch(Exception e1)
+		{
+			System.out.println(e1);
+		}
+	}
+	if(e.getSource()==b2)
+	{
+		dispose();
+		Air a=new Air();
+	}
+	
+}
+
+public static void main(String[] args) {
+	new Passen();
+
+}
+
+}
+

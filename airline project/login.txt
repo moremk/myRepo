@@ -1,0 +1,86 @@
+package Fly;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.*;
+import javax.swing.*;
+public class Login extends JFrame implements ActionListener{
+	JTextField t,t1;
+	JLabel l,l1,l2,l3;
+	JButton b;
+	Login()
+	{
+		Container c=getContentPane();
+		c.setLayout(null);
+		c.setBackground(Color.darkGray);
+		setVisible(true);
+		setBackground(Color.darkGray);
+		setTitle("AirIndia Login");
+		setSize(800,500);
+	    setDefaultCloseOperation(EXIT_ON_CLOSE);
+	    l2=new JLabel(new ImageIcon("C:\\Users\\SME\\Pictures\\book.jpg"));	
+		l2.setBounds(00,00,400,500);
+		c.add(l2);
+		l3=new JLabel("Login AirIndia");
+		l3.setFont(new Font("BOLD",Font.PLAIN,40));
+		l3.setForeground(Color.cyan);
+		l3.setBounds(460,80,300,50);
+		c.add(l3);
+		l=new JLabel("UserName");
+		l.setForeground(Color.magenta);
+		l.setFont(new Font("BOLD",Font.PLAIN,15));
+		l.setBounds(460,150,100,50);
+		c.add(l);
+	    t=new JTextField();
+		t.setBounds(550,150,120,30);
+		c.add(t);
+		
+	    l1=new JLabel("Password");
+		l1.setForeground(Color.magenta);
+		l1.setFont(new Font("BOLD",Font.PLAIN,15));
+		l1.setBounds(460,200,100,30);
+		c.add(l1);
+	    t1=new JTextField();
+		t1.setBounds(550,200,120,30);
+		c.add(t1);
+		
+	    b=new JButton("Login");
+	    b.setBackground(Color.darkGray);
+	    b.setForeground(Color.white);
+		b.setBounds(550,250,120,50);
+		c.add(b);
+		b.addActionListener(this);
+	}
+		public void actionPerformed(ActionEvent e)
+		{
+			
+			if(e.getSource()==b)
+			{
+			  
+				  String un=t.getText();
+				  String pd=t1.getText();
+				  if(un.isEmpty()&&pd.isEmpty())
+				  {
+				  JOptionPane.showMessageDialog(b, "enter username and passoword");
+				  }
+				  else if(un.equals("admin")&&pd.equals("2000"))
+					{
+					  JOptionPane.showMessageDialog(b, "Login successfully");
+					  dispose();
+					  Air a=new Air();
+					  
+					}
+				  else {
+					  JOptionPane.showMessageDialog(b, "login failed");
+				  }
+			  
+			
+		    }
+			
+		}
+
+		public static void main(String[] args) {
+			
+	    new Login();
+		}
+
+	}

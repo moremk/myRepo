@@ -1,0 +1,217 @@
+package Fly;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
+import javax.swing.*;
+public class Cancel extends JFrame implements ActionListener {
+	JMenuBar mb;
+	JMenu m,m1;
+	JMenuItem i1,i2;
+	JLabel l,l1,l2,l3,l4,l5,l6;
+	JTextField t1,t2,t3,t4,t5,t6,t7;
+	JButton b1,b2,b3;
+	Cancel()
+	{
+		Container c=getContentPane();
+		c.setLayout(null);
+		c.setBackground(Color.gray);
+		setTitle("AirIndia");
+		setVisible(true);
+		setLocation(100,60);
+		setSize(630,500);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		mb=new JMenuBar();
+		m=new JMenu("File");
+		m1=new JMenu("Book");
+       
+		i1=new JMenuItem("Open");
+		i2=new JMenuItem("Close");
+		m.add(i1);
+		m.add(i2);	
+		mb.add(m);
+		mb.add(m1);
+		mb.setBounds(00,00,1500,50);
+		m.setForeground(Color.cyan);
+		m1.setForeground(Color.cyan);
+		mb.setBackground(Color.darkGray);
+		c.add(mb);
+		
+		l5=new JLabel("AirLine Tickets Cancel");
+		l5.setBounds(50,50,400,50);
+		l5.setFont(new Font("BOLD",Font.PLAIN,30));
+		l5.setForeground(Color.MAGENTA);
+		c.add(l5);
+		l=new JLabel("Passenger Id :");
+		l.setBounds(30,150,150,30);
+		l.setForeground(Color.white);
+		c.add(l);
+		t1=new JTextField();
+		t1.setBackground(Color.white);
+		t1.setForeground(Color.black);
+		t1.setBounds(130,150,120,30);
+        c.add(t1);
+        
+        l1=new JLabel("Passenger Name :");
+		l1.setBounds(10,200,150,30);
+		l1.setForeground(Color.white);
+		c.add(l1);
+		t2=new JTextField();
+		t2.setBackground(Color.white);
+		t2.setForeground(Color.black);
+		t2.setBounds(130,200,120,30);
+        c.add(t2);
+        
+        l2=new JLabel("Flight Code :");
+		l2.setBounds(30,250,150,30);
+		l2.setForeground(Color.white);
+		c.add(l2);
+		t3=new JTextField();
+		t3.setBackground(Color.white);
+		t3.setForeground(Color.black);
+		t3.setBounds(130,250,120,30);
+        c.add(t3);
+        
+        l3=new JLabel("Nationality :");
+		l3.setBounds(370,150,150,30);
+		l3.setForeground(Color.white);
+		c.add(l3);
+		t4=new JTextField();
+		t4.setBackground(Color.white);
+		t4.setForeground(Color.black);
+		t4.setBounds(450,150,120,30);
+        c.add(t4);
+        
+        l4=new JLabel("Gender :");
+		l4.setBounds(380,200,150,30);
+		l4.setForeground(Color.white);
+		c.add(l4);
+		t5=new JTextField();
+		t5.setBackground(Color.white);
+		t5.setForeground(Color.black);
+		t5.setBounds(450,200,120,30);
+        c.add(t5);
+        
+        l5=new JLabel("Passenger Number :");
+		l5.setBounds(320,250,150,30);
+		l5.setForeground(Color.white);
+		c.add(l5);
+		t6=new JTextField();
+		t6.setBackground(Color.white);
+		t6.setForeground(Color.black);
+		t6.setBounds(450,250,120,30);
+        c.add(t6);
+        
+        l5=new JLabel("Amount :");
+		l5.setBounds(50,300,150,30);
+		l5.setForeground(Color.white);
+		c.add(l5);
+		t7=new JTextField();
+		t7.setBackground(Color.white);
+		t7.setForeground(Color.black);
+		t7.setBounds(130,300,120,30);
+        c.add(t7);
+        
+        b1=new JButton("Search");
+		b1.setBounds(70,400,130,50);
+		b1.setForeground(Color.white);
+		b1.setBackground(Color.DARK_GRAY);
+		b1.addActionListener(this);
+		c.add(b1);
+		
+		b2=new JButton("Delete");
+		b2.setBounds(215,400,130,50);
+		b2.setForeground(Color.white);
+		b2.setBackground(Color.DARK_GRAY);
+		b2.addActionListener(this);
+		c.add(b2);
+		b3=new JButton("Back");
+		b3.setBounds(360,400,130,50);
+		b3.setForeground(Color.white);
+		b3.setBackground(Color.DARK_GRAY);
+		b3.addActionListener(this);
+		c.add(b3);
+		t1.setEditable(true);
+		t2.setEditable(false);
+		t3.setEditable(false);
+		t4.setEditable(false);
+		t5.setEditable(false);
+		t6.setEditable(false);
+		t7.setEditable(false);
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==b1)
+		{
+		try {
+			    int id=Integer.parseInt(t1.getText());
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					System.out.println("Driver loaded");
+					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/update","root","");
+					System.out.println("Connection Successfully");
+
+				   
+				   Statement st=con.createStatement();
+			     
+			       ResultSet rs=st.executeQuery("Select * From ticket where id=Id");
+			       while(rs.next())
+			       {
+			    	   
+						String Name=rs.getString(2);
+						String Code=rs.getString(3);
+						String Nationality=rs.getString(4);
+						String Gender=rs.getString(5);
+						String Number=rs.getString(6);
+						String Amount=rs.getString(7);
+			         
+						t2.setText(Name);
+						t3.setText(Code);
+						t4.setText(Nationality);
+						t5.setText(Gender);
+						t6.setText(Number);
+						t7.setText(Amount);
+			       }
+				  JOptionPane.showMessageDialog(b1, "Flight Search Successfully");
+				  con.close();
+			}
+			catch(Exception e1)
+		{
+				System.out.println(e1);
+		}
+				
+		}
+		if(e.getSource()==b2)
+		{
+			try {
+			int id=Integer.parseInt(t1.getText());
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("Driver loaded");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/update","root","");
+			System.out.println("Connection Successfully");
+			String q="Delete from ticket where id=Id";
+			PreparedStatement st=con.prepareStatement(q);
+			st.executeUpdate(q);
+			  JOptionPane.showMessageDialog(b1, "Flight Delete Successfully");
+			  con.close();
+			
+			}
+			catch(Exception e2)
+			{
+				System.out.println(e2);
+			}
+
+		}
+		if(e.getSource()==b3)
+		{
+			dispose();
+			Air a=new Air();
+		}
+		
+	}
+	public static void main(String[] args) {
+		new Cancel();
+
+	}
+
+}
+

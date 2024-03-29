@@ -1,0 +1,208 @@
+package Fly;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
+import javax.swing.*;
+public class Ticket extends JFrame implements ActionListener {
+	JMenuBar mb;
+	JMenu m,m1;
+	JMenuItem i1,i2;
+	JLabel l,l1,l2,l3,l4,l5,l6;
+	JTextField t1,t2,t3,t4,t5,t6,t7;
+	JButton b1,b2;
+	Ticket()
+	{
+		Container c=getContentPane();
+		c.setLayout(null);
+		c.setBackground(Color.gray);
+		setTitle("AirIndia");
+		setVisible(true);
+		setLocation(100,60);
+		setSize(630,500);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		mb=new JMenuBar();
+		m=new JMenu("File");
+		m1=new JMenu("Book");
+       
+		i1=new JMenuItem("Open");
+		i2=new JMenuItem("Close");
+		m.add(i1);
+		m.add(i2);	
+		mb.add(m);
+		mb.add(m1);
+		mb.setBounds(00,00,1500,50);
+		m.setForeground(Color.cyan);
+		m1.setForeground(Color.cyan);
+		mb.setBackground(Color.darkGray);
+		c.add(mb);
+		
+		l5=new JLabel("AirLine Tickets Booking");
+		l5.setBounds(50,50,400,50);
+		l5.setFont(new Font("BOLD",Font.PLAIN,30));
+		l5.setForeground(Color.MAGENTA);
+		c.add(l5);
+		l=new JLabel("Passenger Id :");
+		l.setBounds(30,150,150,30);
+		l.setForeground(Color.white);
+		c.add(l);
+		t1=new JTextField();
+		t1.setBackground(Color.white);
+		t1.setForeground(Color.black);
+		t1.setBounds(130,150,120,30);
+        c.add(t1);
+        
+        l1=new JLabel("Passenger Name :");
+		l1.setBounds(10,200,150,30);
+		l1.setForeground(Color.white);
+		c.add(l1);
+		t2=new JTextField();
+		t2.setBackground(Color.white);
+		t2.setForeground(Color.black);
+		t2.setBounds(130,200,120,30);
+        c.add(t2);
+        
+        l2=new JLabel("Flight Code :");
+		l2.setBounds(30,250,150,30);
+		l2.setForeground(Color.white);
+		c.add(l2);
+		t3=new JTextField();
+		t3.setBackground(Color.white);
+		t3.setForeground(Color.black);
+		t3.setBounds(130,250,120,30);
+        c.add(t3);
+        
+        l3=new JLabel("Nationality :");
+		l3.setBounds(370,150,150,30);
+		l3.setForeground(Color.white);
+		c.add(l3);
+		t4=new JTextField();
+		t4.setBackground(Color.white);
+		t4.setForeground(Color.black);
+		t4.setBounds(450,150,120,30);
+        c.add(t4);
+        
+        l4=new JLabel("Gender :");
+		l4.setBounds(380,200,150,30);
+		l4.setForeground(Color.white);
+		c.add(l4);
+		t5=new JTextField();
+		t5.setBackground(Color.white);
+		t5.setForeground(Color.black);
+		t5.setBounds(450,200,120,30);
+        c.add(t5);
+        
+        l5=new JLabel("Number Of Seat:");
+		l5.setBounds(320,250,150,30);
+		l5.setForeground(Color.white);
+		c.add(l5);
+		t6=new JTextField();
+		t6.setBackground(Color.white);
+		t6.setForeground(Color.black);
+		t6.setBounds(450,250,120,30);
+        c.add(t6);
+        
+        l5=new JLabel("Amount :");
+		l5.setBounds(50,300,150,30);
+		l5.setForeground(Color.white);
+		c.add(l5);
+		t7=new JTextField();
+		t7.setBackground(Color.white);
+		t7.setForeground(Color.black);
+		t7.setBounds(130,300,120,30);
+        c.add(t7);
+        
+        b1=new JButton("Booking");
+		b1.setBounds(180,400,130,50);
+		b1.setForeground(Color.white);
+		b1.setBackground(Color.DARK_GRAY);
+		b1.addActionListener(this);
+		c.add(b1);
+		
+		b2=new JButton("Back");
+		b2.setBounds(330,400,130,50);
+		b2.setForeground(Color.white);
+		b2.setBackground(Color.DARK_GRAY);
+		b2.addActionListener(this);
+		c.add(b2);
+	}
+		public void actionPerformed(ActionEvent e)
+		{
+			if(e.getSource()==b1)
+			{
+				
+				try {
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					System.out.println("Driver loaded");
+					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/update","root","");
+					System.out.println("Connection Successfully");
+					String Id=t1.getText();	
+					String Name=t2.getText();
+					String Code=t3.getText();
+					String Nationality=t4.getText();
+					String Gender=t5.getText();
+					String Number=t6.getText();
+					String Amount=t7.getText();
+				String q="insert into ticket(Id,Name,Code,Nationality,Gender,Number,Amount)values('"+Id+"','"+Name+"','"+Code+"','"+Nationality+"','"+Gender+"','"+Number+"','"+Amount+"')";
+				PreparedStatement st=con.prepareStatement(q);
+				st.executeUpdate(q);
+				
+				if(Id.isEmpty()&&Id.equals(""))
+				{
+					JOptionPane.showMessageDialog(this, "Please, Enter a Passenger Id in Number");
+					
+				}
+				else if(Name.isEmpty()&&Name.equals(""))
+				{
+					JOptionPane.showMessageDialog(this, "Please, Enter a Passenger Name");
+				}
+				else if(Code.isEmpty()&&Code.equals(""))
+				{
+					JOptionPane.showMessageDialog(this, "Please, Enter a Flight Code");
+				}
+				
+				else if(Nationality.isEmpty()&&Nationality.equals(""))
+				{
+					JOptionPane.showMessageDialog(this, "Please, Enter a Passenger Nationality");
+				}
+				else if(Gender.isEmpty()&&Gender.equals(""))
+				{
+					JOptionPane.showMessageDialog(this, "Please, Enter a Passenger Gender");
+				}
+				else if(Number.isEmpty()&&Number.equals(""))
+				{
+					JOptionPane.showMessageDialog(this, "Please, Enter a Number of Seat");
+				}
+				
+				else if(Amount.isEmpty()&&Amount.equals(""))
+				{
+					JOptionPane.showMessageDialog(this, "Please, Enter a Amount");
+				}
+				else {
+					JOptionPane.showMessageDialog(this, "Your Record is Correct Click On Ok Button to Submit Successfully");
+				}
+				
+				con.close();
+				}
+					
+				
+				catch(Exception e1)
+				{
+					System.out.println(e1);
+				}
+				
+					
+			}
+			if(e.getSource()==b2)
+			{
+				dispose();
+				Air a=new Air();
+			}
+			
+		}
+		public static void main(String[] args) {
+			new Ticket();
+
+		}
+
+	}

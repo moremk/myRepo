@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <script>
+  
+  function myFunction()
+  {
+    let mn=document.getElementById("nm");
+    let rn=document.getElementById("rn");
+    let ed=document.getElementById("ed");
+    let mb=document.getElementById("mb");
+    if(mn==""||mn!=null)
+    {
+      alert("enter a  FuLL Name")
+    }
+    else if(rn==""||rn!=null)
+    {
+      alert("enter a  Roll Number");
+    }
+    else if(ed==""||ed!=null)
+    {
+      alert("enter a  EmailId");
+    }
+    else if(mb==""||mb!=null||mb<0||Mb>9)
+    {
+      alert("enter a  Mobile Number");
+    }
+    else{
+	  alert("Welcome,Your data SuccessFully Submited Thanks !!");
+  }
+}
+  function Close()
+  {
+    let popup=document.getElementById('popup').style.display='none';
+  }
+
+
+
+
+  </script>
+  </head>
+  <style>
+  body{
+    background: url("rmc.jpeg");
+    background-size:cover;
+    
+ 
+  }
+  
+  .table{
+    margin-top:100px;
+    margin-left: 400px;
+    max-width: 100px;
+     
+    
+  }
+  </style>
+  <body>
+   <div class="p-3 mb-2 bg-primary text-white" style="width:1380px;">
+  <img  src="pdea.jpg"style="width:50px;hight:30px;border-radius:50px;">
+ <p style="font-size:30px;margin-top:-40px;margin-left:60px;"> Prof. Ramkrishna More College</p></img>
+  </div>
+
+  <button type="button"class="btn btn-success" onclick="showMsg();" style="margin-top: -80px;margin-right:50px;float:right;max-width: 100px;">Attendance</button>
+  <form  th:action="@{/home}" th:object="${user}" method="post"style="visibility:hidden" name="message">
+  <table style="margin-top:50px;margin-right:400px;max-width:500px;background-color:white; float:right;"  id="popup">
+  
+      <tr>
+        <th  style="color:red;width:300px; font-size: 30px;">Attendance Management System</th>
+      </tr>
+      <tr>
+        <td class="text-black">Name</td></tr>
+        <tr></tr> <td><input type="text" id="nm"style="width: 500px;"class="form-control" name="name" th:object="${name}"></th>
+      </tr>
+      <tr>
+        <td class="text-black">Roll No</td></tr>
+        <tr><td><input type="number" id="rn" style="width: 500px;" class="form-control" name="number" th:object="${number}"></th>
+      </tr>
+      <tr>
+        <td class="text-black">Email Id</td></tr>
+       <tr><td><input type="email" id="ed"style="width: 500px;" class="form-control" name="email" th:object="${email}"></th>
+      </tr>
+      <tr>
+        <td class="text-black">MobileNo</td></tr>
+       <tr> <td><input type="number" id="mb"style="width: 500px;"class="form-control" name="num" th:object="${num}"></th>
+      </tr>
+      <tr><td></td></tr>
+      <tr><td></td></tr>
+      <tr><td></td></tr>
+      <tr> 
+         <td><button type="submit" class="btn btn-primary"onclick="myFunction()" style="width: 500px;">Attendance</button></td>
+            
+      </tr>
+  </table>
+</div>
+</form>
+<script>
+ function showMsg(){
+document.message.style.visibility="visible";
+}
+</script>
+  </body>
+</html>

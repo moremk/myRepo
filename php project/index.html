@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </head>
+  <style>
+  
+   .demo{
+    max-width:400px;
+    text-align:left;
+    margin-left:00px;
+    margin-top:200px;
+    color:green;
+    box-shadow:2px 1px 2px 1px;
+   }
+   input[type="text"]
+   {
+   margin-left:100px;
+    width:200px;
+   }
+    input[type="Password"]
+    {
+     margin-left:100px;
+    width:200px;
+    }
+    
+     input[type="submit"]
+     {
+      margin-left:100px;
+     width:100px;
+     }
+     
+  </style>
+  <body>
+   
+ <form class="col-5" th:action="@{/home}" th:object="${user}" method="post">
+ <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark" style=width:1380px;>
+  <div class="bg-dark p-4"style=width:1380px;>
+    <h5 class="text-body-secondary">Home</h5>
+    <span class="text-body-secondary">About</span>
+    <h6 class="text-body-secondary">Contact</h6>
+  </div>
+</div>
+<nav class="navbar navbar-dark bg-dark"style=width:1380px;>
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+ <div  class="demo">
+<h1 style="color:red;  margin-left:100px;">Login Form</h1>
+<label style="font-size:15px; margin-left:100px;">UserName</label><br>
+<input type="text" class="form-control" name="name" th:object="${name}">
+
+<label style="font-size:15px; margin-left:100px;">Password</label><br>
+<input type="Password"  class="form-control"name="password" th:object="${password}">
+<br>
+<input type="submit" value="Login" class="btn btn-success">
+</div>
+</form>
+  </body>
+</html>

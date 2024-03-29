@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    function valid() {
+        var name = document.getElementById('nm').value;
+        var email = document.getElementById('em').value;
+        var mob = document.getElementById('mb').value;
+        if (name == null || name == '') {
+            alert("please, Enter Name");
+
+        }
+        else if (email == null || email == '') {
+            alert("please, Enter Email");
+
+        }
+        else if (mob == '' || mob == null) {
+            alert("please, Enter mobile Number");
+
+        }
+        else {
+            alert("Thanks, Your Data is Correct");
+
+        }
+    }
+</script>
+
+<head>
+    <title>Mahesh More</title>
+</head>
+<style>
+    body {
+        background-color: #2193b0;
+        max-width: 100%;
+        max-height: 100%;
+        background-size: cover;
+
+    }
+
+    .dat img {
+        margin-top: 10px;
+        max-width: 50px;
+        max-height: 100%;
+        border-radius: 50px;
+
+    }
+
+    .demo {
+        float: right;
+        margin-top: -60px;
+        margin-right: 5px;
+        padding: 20px;
+        max-width: 990px;
+        max-height: 30px;
+    }
+
+    .demo a {
+        float: right;
+        margin-right: 20px;
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+
+    }
+
+    .demo a:hover {
+        max-width: 80px;
+        max-height: 80px;
+        color: red;
+
+    }
+
+    table {
+        margin-top: 120px;
+        padding: 30px;
+        border-bottom-right-radius: 30px;
+        border-top-left-radius: 30px;
+        font-size: 20px;
+        max-width: auto;
+        max-height: auto;
+        color: white;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    }
+
+    th {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-style: italic;
+        font-size: 30px;
+        opacity: 3px;
+        color: chartreuse;
+    }
+
+    input[type='text'] {
+        padding: 10px;
+        margin-top: 5px;
+        max-width: 200px;
+        max-height: 50px;
+        border-radius: 10px;
+    }
+
+    input[type='number'] {
+        padding: 10px;
+        margin-top: 5px;
+        max-width: 200px;
+        max-height: 50px;
+        border-radius: 10px;
+    }
+
+    input[type='submit'] {
+        margin-top: 5px;
+        margin-left: 40px;
+        padding: 10px;
+        font-size: 20px;
+        max-width: 200px;
+        max-height: 50px;
+        border-radius: 10px;
+        background-color: aqua;
+    }
+
+    footer {
+        margin-top: 54px;
+        background-color: #dd2476;
+        color: white;
+        padding: 10px;
+        margin-left: -9px;
+        margin-right: -9px;
+        margin-bottom: -9px;
+    }
+</style>
+
+<body>
+    <div class="dat">
+        <img src="h.jpeg">
+    </div>
+    <div class="demo">
+        <a href="Contact.html">Contact</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="About.html">AboutUs</a>
+        <a href="home.html">Home</a>
+    </div>
+    <center>
+        <table border="0">
+            <form action=" " onsubmit="return valid()" method='post'>
+                <tr>
+                    <th>Contact Us</th>
+                </tr>
+                <tr>
+                    <td>Full Name *</td>
+                    <td><input type="text" required id="nm" name='nm'></td>
+                </tr>
+                <tr>
+                    <td>Email *</td>
+                    <td><input type="text" required id="em" name='em'></td>
+                </tr>
+                <tr>
+                    <td>Mob No. *</td>
+                    <td><input type="number" required id="mb" name='mb'></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    </td>
+                    <td><input type="submit" value="Submit"></td>
+                </tr>
+        </table>
+    </center>
+    <center>
+        <footer>
+
+            ==================<br>
+            Name : More Mahesh<br>
+            Email : moremk2019@gmail.com<br>
+            Mob No. : 9322974643
+
+        </footer>
+    </center>
+    </form>
+</body>
+
+</html>

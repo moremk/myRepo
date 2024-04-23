@@ -1,0 +1,52 @@
+@charset "ISO-8859-1";
+body{
+	margin:0%;
+	padding:%0;
+	background-color:green;
+	
+}
+.sam{
+margin:auto;
+margin-top:100px;
+width:400px;
+height:400px;
+text-align:center;
+background-color:yellow;
+}
+
+label{
+	
+	color:blue;
+	font-size:30px;
+	font-family:bold;
+}
+input[type="text"]
+{
+	margin:auto;
+	margin-top:50px;
+	width:200px;
+	height:30px;
+	border:none;
+	outline:none;
+	
+}
+input[type="password"]
+{
+	margin:auto;
+	width:200px;
+	height:30px;
+	border:none;
+	outline:none;
+	
+}
+input[type="submit"]
+{
+	margin:auto;
+	width:150px;
+	height:40px;
+	border:none;
+	outline:none;
+	background-color:blue;
+	color:white;
+	
+}

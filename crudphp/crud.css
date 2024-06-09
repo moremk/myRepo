@@ -1,0 +1,44 @@
+
+    body{
+    margin: 0%;
+    padding: 0%;
+    background-color: rgb(76, 168, 199);
+}
+.demo{
+    margin: auto;
+    margin-top: 100px;
+    width: 400px;
+}
+header
+{
+    margin-left: 200px;
+    color:white;
+    font-size: 30px;
+    font-family: bold;
+}
+label{
+    margin-left: 170px;
+    font-size: 15px;
+    color:rgb(245, 47, 47);
+    font-family: bold;
+}
+input[type="text"]
+{
+    margin-left: 170px;
+    outline: none;
+    border-color: rgb(22, 22, 243);
+    width: 300px;
+    height: 30px;
+
+}
+input[type="submit"]
+{
+    margin-left: 170px;
+    outline: none;
+    border: none;
+    color:white;
+    background-color: rgb(245, 47, 47);
+    width: 200px;
+    height: 30px;
+
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Integration</title>
+</head>
+<body>
+    <h1>Payment Integration</h1>
+    <form th:action="@{/index}" method="post">
+        <script src="https://checkout.razorpay.com/v1/checkout.js"
+                th:attr="data-key=${apiKey},
+                         data-amount=${amount},
+                         data-currency='INR',
+                         data-id=${orderId},
+                         data-buttontext='Pay now',
+                         data-name='Mahesh More',
+                         data-description='E-commerce web',
+                         data-image='http://yourdomain.com/images/M.jpeg',
+                         data-prefill.name='Mahesh Kisan More',
+                         data-prefill.email='moremk2019@gmail.com',
+                         data-prefill.contact='9322974643',
+                         data-theme.color='#0e90e4'">
+        </script>
+    </form>
+</body>
+</html>
